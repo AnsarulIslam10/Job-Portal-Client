@@ -1,21 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const links = (
     <>
       <li>
         <a>Item 1</a>
-      </li>
-      <li>
-        <a>Parent</a>
-        <ul className="p-2">
-          <li>
-            <a>Submenu 1</a>
-          </li>
-          <li>
-            <a>Submenu 2</a>
-          </li>
-        </ul>
       </li>
       <li>
         <a>Item 3</a>
@@ -57,7 +47,8 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <Link to={'/register'}>Register</Link>
+        <a className="btn">Sign In</a>
       </div>
     </div>
   );
