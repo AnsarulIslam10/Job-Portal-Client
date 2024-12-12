@@ -1,9 +1,11 @@
 import React from "react";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const AddJob = () => {
   const { user } = useAuth();
+  const navigate = useNavigate()
   const handleAddJob = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -30,6 +32,7 @@ const AddJob = () => {
             text: "New Job Added Successfully",
             icon: "success",
           });
+          navigate('/myPostedJobs')
         }
       });
   };
