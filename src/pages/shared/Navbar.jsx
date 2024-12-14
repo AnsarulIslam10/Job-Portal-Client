@@ -5,25 +5,35 @@ import { AuthContext } from "../../context/AuthProvider";
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
 
-  const handleSignOut = ()=>{
+  const handleSignOut = () => {
     signOutUser()
-    .then(result =>{
-      console.log("signout successfull")
-    })
-    .then(error =>{
-      console.log(error)
-    })
-  }
+      .then((result) => {
+        console.log("Sign out successful");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const links = (
     <>
-      <li><NavLink to={'/'}>Home</NavLink></li>
-      <li><NavLink to={'/myApplications'}>My Applications</NavLink></li>
-      <li><NavLink to={'/addJob'}>Add a Job</NavLink></li>
-      <li><NavLink to={'/myPostedJobs'}>My Posted Jobs</NavLink></li>
+      <li>
+        <NavLink to={"/"}>Home</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/myApplications"}>My Applications</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/addJob"}>Post a Job</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/myPostedJobs"}>My Posted Jobs</NavLink>
+      </li>
     </>
   );
+
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar sticky top-0 z-50 bg-white bg-opacity-60 backdrop-blur-md border-b border-gray-200">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -49,20 +59,33 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-2xl font-bold">CareerHub</a>
       </div>
+
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
+
       <div className="navbar-end">
         {user ? (
-          <>
-            <button onClick={handleSignOut} className="btn">Log Out</button>
-          </>
+          <button
+            onClick={handleSignOut}
+            className="btn btn-outline text-black border-black hover:bg-black hover:text-white"
+          >
+            Log Out
+          </button>
         ) : (
           <>
-            <Link to={"/register"}>Register</Link>
-            <Link to={"/signin"} className="btn">
+            <Link
+              to={"/register"}
+              className="btn text-black hover:bg-gray-300 border-2 border-black"
+            >
+              Register
+            </Link>
+            <Link
+              to={"/signin"}
+              className="btn bg-black hover:bg-gray-800 text-white ml-2"
+            >
               Sign In
             </Link>
           </>
