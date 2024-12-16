@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { FaTrash } from "react-icons/fa6";
+import axios from "axios";
 
 const MyApplications = () => {
   const { user } = useAuth();
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/job-application?email=${user.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setJobs(data);
-      });
+    // fetch(`http://localhost:5000/job-application?email=${user.email}`)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setJobs(data);
+    //   });
+    axios.get(`http://localhost:5000/job-application?email=${user.email}`, {withCredentials: true})
+    .then(res => setJobs(res.data))
+
   }, [user.email]);
 
   return (
